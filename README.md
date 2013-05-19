@@ -1,8 +1,9 @@
-# SEO Module
+# Silverstripe SEO Module
 
 ## Maintainer Contact
 
 * Bart van Irsel (Nickname: hubertusanton) <bart@30.nl>
+
 
 ## Requirements
 
@@ -16,6 +17,10 @@ of the page which can be defined using a google suggest field.
 
 The fields for meta data in pages will be moved to a SEO part by this module.
 This is done for giving a realtime on the google search result of the page. 
+
+## Screenshots
+
+![ScreenShot](https://raw.github.com/hubertusanton/master/screenshot.jpg)
 
 ## TODO's for next versions
 
