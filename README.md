@@ -20,7 +20,8 @@ This is done for giving a realtime on the google search result of the page.
 
 ## Screenshots
 
-![ScreenShot](https://raw.github.com/hubertusanton/master/screenshot.jpg)
+![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen2.png)
+![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen3.png)
 
 ## TODO's for next versions
 
