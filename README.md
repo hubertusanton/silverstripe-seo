@@ -23,6 +23,9 @@ This is done for giving a realtime preview on the google search result of the pa
 ![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen2.png)
 ![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen3.png)
 
+## Installation
+Place the module dir in your website root and run /dev/build?flush=all
+
 ## TODO's for next versions
 
 * Check img tags for title and alt tags
