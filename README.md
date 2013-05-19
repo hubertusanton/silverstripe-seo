@@ -3,6 +3,7 @@
 ## Maintainer Contact
 
 * Bart van Irsel (Nickname: hubertusanton)
+* [Dertig Media](http://www.30.nl)
 
 
 ## Requirements
