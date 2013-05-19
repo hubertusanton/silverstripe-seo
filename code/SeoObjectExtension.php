@@ -44,12 +44,10 @@ class SeoObjectExtension extends SiteTreeExtension {
             'page_has_images' => _t('SEO.SEOScoreTipPageHasImages', 'The content of this page does not have any images.'),
             'content_has_subtitles' => _t('SEO.SEOScoreTipContentHasSubtitles', 'The content of this page does not have any subtitles')
         );
-            
+
         return $score_criteria_tips;
     }
-    
-    
-    
+
 	/**
 	 * @param FieldList
 	 */
