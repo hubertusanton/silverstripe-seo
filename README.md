@@ -2,7 +2,7 @@
 
 ## Maintainer Contact
 
-* Bart van Irsel (Nickname: hubertusanton) <bart@30.nl>
+* Bart van Irsel (Nickname: hubertusanton)
 
 
 ## Requirements
