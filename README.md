@@ -16,7 +16,7 @@ A rating of the SEO of the current page helps the website editor creating good c
 of the page which can be defined using a google suggest field.
 
 The fields for meta data in pages will be moved to a SEO part by this module.
-This is done for giving a realtime on the google search result of the page. 
+This is done for giving a realtime preview on the google search result of the page. 
 
 ## Screenshots
 
