@@ -3,9 +3,9 @@
 class SeoObjectExtension extends SiteTreeExtension {
 
 
-	public static $db = array(
+    public static $db = array(
         'SEOPageSubject' => 'Varchar(256)'
-	);  
+    );  
 
 
     public $score_criteria = array(
@@ -43,7 +43,8 @@ class SeoObjectExtension extends SiteTreeExtension {
             'content_has_links' => _t('SEO.SEOScoreTipContentHasLinks', 'De content of this page does not have any (outgoing) links.'),
             'page_has_images' => _t('SEO.SEOScoreTipPageHasImages', 'The content of this page does not have any images.'),
             'content_has_subtitles' => _t('SEO.SEOScoreTipContentHasSubtitles', 'The content of this page does not have any subtitles')
-        );    
+        );
+            
         return $score_criteria_tips;
     }
     
