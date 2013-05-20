@@ -72,7 +72,6 @@ JS
 
 	}
 
-
 	private function get_google_suggest ($suggest_for = '') {
 
 		$url = file_get_contents($this->google_suggest_url . urlencode($suggest_for));
@@ -91,6 +90,5 @@ JS
 		print (Convert::array2json($this->google_suggest_results));
 	}
 	
-
 
 }

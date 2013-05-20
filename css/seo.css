@@ -16,6 +16,7 @@
     font-family: arial,sans-serif;
     text-decoration: underline;
     margin-bottom: 4px;
+    overflow: hidden;
 }
 
 #google_search_snippet div.google_search_url {
