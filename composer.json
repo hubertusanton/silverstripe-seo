@@ -1,7 +1,7 @@
 {
 	"name": "hubertusanton/silverstripe-seo",
 	"description": "SEO module for Silverstripe",
-	"type": "silverstripe-seo",
+	"type": "silverstripe-module",
 	"homepage": "http://github.com/hubertusanton/silverstripe-seo",
 	"keywords": ["silverstripe", "seo"],
 	"license": "BSD-3-Clause",
