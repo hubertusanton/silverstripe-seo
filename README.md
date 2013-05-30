@@ -8,9 +8,7 @@
 
 ## Requirements
 
-* SilverStripe 3.0
-
-Silverstripe 3.1 under dev, use 3.0 branch for Silverstripe 3.0
+* SilverStripe 3.* -> use 3.0 branch for Silverstripe 3.0 !
 
 ## Documentation
 
