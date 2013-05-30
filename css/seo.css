@@ -1,87 +1,87 @@
 #google_search_snippet {
-    font-family: arial,sans-serif;
-    width: 528px;
-    background-color: #fff;
-    padding: 4px 16px;
-    margin-bottom: 16px;
+	font-family: arial,sans-serif;
+	width: 528px;
+	background-color: #fff;
+	padding: 4px 16px;
+	margin-bottom: 16px;
 }
 
 #google_search_snippet h3 {
-    font-style: normal;
-    font-weight: bold;
-    color: #1122CC;
-    cursor: pointer;
-    white-space: nowrap;
-    font-size: medium;
-    font-family: arial,sans-serif;
-    text-decoration: underline;
-    margin-bottom: 4px;
-    overflow: hidden;
+	font-style: normal;
+	font-weight: bold;
+	color: #1122CC;
+	cursor: pointer;
+	white-space: nowrap;
+	font-size: medium;
+	font-family: arial,sans-serif;
+	text-decoration: underline;
+	margin-bottom: 4px;
+	overflow: hidden;
 }
 
 #google_search_snippet div.google_search_url {
-    font-size: 14px !important;
-    display: inline-block;
-    color: #009933;
-    font-style: normal;
-    white-space: nowrap;
-    font-family: arial,sans-serif;
-    font-size: small;
-    font-weight: normal;
+	font-size: 14px !important;
+	display: inline-block;
+	color: #009933;
+	font-style: normal;
+	white-space: nowrap;
+	font-family: arial,sans-serif;
+	font-size: small;
+	font-weight: normal;
 }
 
 /* hidden literal field for site title */
 #ss_siteconfig_title {
-    display: none;
+	display: none;
 }
 
 #Root_SEO div#Options ul.ui-tabs-nav {
-    float: left;
+	float: left;
 }
 
 
 /* five-star css */
 div#fivestar-widget {
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 }
 div#fivestar-widget div.star {
-    float: left;
-    height: 15px;
-    overflow: hidden;
-    width: 17px;
-    text-indent: -999em;
-    background: url("../images/star.png") no-repeat scroll 0 0 transparent;
-    text-decoration: none;    
+	float: left;
+	height: 15px;
+	overflow: hidden;
+	width: 17px;
+	text-indent: -999em;
+	background: url("../images/star.png") no-repeat scroll 0 0 transparent;
+	text-decoration: none;    
 }
 div#fivestar-widget div.on {
-    background-position: 0 -16px;
+	background-position: 0 -16px;
 }
 
 h5.seo_score {
-    margin-bottom: 4px;
-    margin-top: 4px;
+	margin-bottom: 4px;
+	margin-top: 4px;
 }
 div.score_clear {
-    clear: both;
-    height: 10px;
+	clear: both;
+	height: 10px;
 }
 
 ul#seo_score_tips {
-    list-style: circle;
-    margin: 14px;
+	list-style: circle;
+	margin: 14px;
 }
 ul#seo_score_tips li {
-    color: #f00;
-    margin-bottom: 4px;
+	color: #f00;
+	margin-bottom: 4px;
 }
 
 
 .simple_pagesubject_yes {
-    font-weight: bold;
-    color: green;
+	font-weight: bold;
+	color: green;
 }
 .simple_pagesubject_no {
-    font-weight: bold;
-    color: red;
+	font-weight: bold;
+	color: red;
 }
