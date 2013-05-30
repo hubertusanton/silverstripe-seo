@@ -10,6 +10,8 @@
 
 * SilverStripe 3.0
 
+Silverstripe 3.1 under dev, use 3.0 branch for Silverstripe 3.0
+
 ## Documentation
 
 This modules helps the administrator of the Silverstripe website in getting good results in search engines.

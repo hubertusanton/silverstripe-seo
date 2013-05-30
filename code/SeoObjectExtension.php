@@ -80,6 +80,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 		));
 
 		// move Metadata field from Root.Main to SEO tab for visualising direct impact on search result
+
 		$fields->removeByName('Metadata');
 
 		$fields->addFieldToTab("Root.SEO", new TabSet('Options', 
@@ -89,11 +90,23 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 
 		$fields->addFieldsToTab('Root.SEO.Options.Metadata', array(
-							TextField::create("MetaTitle", $this->owner->fieldLabel('MetaTitle')),
-							TextareaField::create("MetaKeywords", $this->owner->fieldLabel('MetaKeywords'), 1),
-							TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription')),
+							TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription'))
+								->setRightTitle(
+									_t(
+										'SiteTree.METADESCHELP', 
+										"Search engines use this content for displaying search results (although it will not influence their ranking)."
+									)
+								)
+								->addExtraClass('help'),
 							TextareaField::create("ExtraMeta",$this->owner->fieldLabel('ExtraMeta'))
-			)
+								->setRightTitle(
+									_t(
+										'SiteTree.METAEXTRAHELP', 
+										"HTML tags for additional meta information. For example &lt;meta name=\"customName\" content=\"your custom content here\" /&gt;"
+									)
+								)
+								->addExtraClass('help')
+							)
 		);
 		$fields->addFieldsToTab('Root.SEO.Options.HelpAndSEOScore', array(
 			LiteralField::create('ScoreTitle', '<h4 class="seo_score">' . _t('SEO.SEOScore', 'SEO Score') . '</h4>'),
@@ -118,9 +131,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 				)
 			);    
 		} 
-
-
-
+		
 
 	}
 
