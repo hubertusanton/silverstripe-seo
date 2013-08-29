@@ -81,7 +81,7 @@ JS
 		{
 			$suggestion_record = array();
 			$suggestion_record['id'] =  $suggestion['suggestion']['@attributes']['data'];
-			$suggestion_record['label'] =  $suggestion['suggestion']['@attributes']['data'] . ' (' . $suggestion['num_queries']['@attributes']['int'] . ')';
+			$suggestion_record['label'] =  $suggestion['suggestion']['@attributes']['data'];
 			$suggestion_record['value'] = $suggestion['suggestion']['@attributes']['data'];
 
 			$this->google_suggest_results[] = $suggestion_record;
