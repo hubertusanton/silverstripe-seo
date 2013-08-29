@@ -77,14 +77,16 @@ JS
 		$url = file_get_contents($this->google_suggest_url . urlencode($suggest_for));
 		$suggestions = Convert::xml2array($url);
 
-		foreach ($suggestions['CompleteSuggestion'] as $suggestion)
-		{
-			$suggestion_record = array();
-			$suggestion_record['id'] =  $suggestion['suggestion']['@attributes']['data'];
-			$suggestion_record['label'] =  $suggestion['suggestion']['@attributes']['data'];
-			$suggestion_record['value'] = $suggestion['suggestion']['@attributes']['data'];
+		if (!empty($suggestions)) {
 
-			$this->google_suggest_results[] = $suggestion_record;
+			foreach ($suggestions['CompleteSuggestion'] as $suggestion)	{
+				$suggestion_record = array();
+				$suggestion_record['id'] =  $suggestion['suggestion']['@attributes']['data'];
+				$suggestion_record['label'] =  $suggestion['suggestion']['@attributes']['data'];
+				$suggestion_record['value'] = $suggestion['suggestion']['@attributes']['data'];
+
+				$this->google_suggest_results[] = $suggestion_record;
+			}
 		}
 
 		print (Convert::array2json($this->google_suggest_results));
