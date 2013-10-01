@@ -39,7 +39,7 @@ Place the module dir in your website root and run /dev/build?flush=all
 * Check how many times the page subject has been used and give feedback to user
 * (Re)Calculate SEO Score in realtime with javascript without need to save first
 * Put html in cms defined in methods in template files
-* Silverstripe 3.1 compatibility? Some Meta fields are gone in 3.1?!
+* Check extra added db fields/ many_many DataObjects for SEO score and make this configurable
 
 ## License
 
