@@ -13,7 +13,7 @@ en:
     SEOScoreTipPageSubjectInMetaDescription: 'Page subject is not present in the meta description of the page'
     SEOScoreTipNumwordsContentOk: 'The content of this page is too short and does not have enough words. Please create content of at least 300 words based on the Page subject.'       
     SEOScoreTipPageTitleLengthOk: 'The title of the page is not long enough and should have a lenght of at least 40 characters.'
-    SEOScoreTipContentHasLinks: 'De content of this page does not have any (outgoing) links.'
+    SEOScoreTipContentHasLinks: 'The content of this page does not have any (outgoing) links.'
     SEOScoreTipPageHasImages: 'The content of this page does not have any images.'
     SEOScoreTipContentHasSubtitles: 'The content of this page does not have any subtitles'  
     SEOScore: 'SEO Score'
