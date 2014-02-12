@@ -1,6 +1,0 @@
----
-name: 'seoextensions'
----
-Page:
-  extensions:
-    0: 'SeoObjectExtension'

@@ -8,7 +8,7 @@
 
 ## Requirements
 
-* SilverStripe 3.* -> use 3.0 branch for Silverstripe 3.0 !
+* SilverStripe 3.1
 
 ## Documentation
 
@@ -18,6 +18,8 @@ of the page which can be defined using a google suggest field.
 
 The fields for meta data in pages will be moved to a SEO part by this module.
 This is done for giving a realtime preview on the google search result of the page. 
+
+In seo.yml config file you can specify which classes will use the module. 
 
 ## Screenshots
 

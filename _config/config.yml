@@ -1,0 +1,11 @@
+---
+Name: 'seoextensions'
+---
+Page:
+  extensions:
+    0: 'SeoObjectExtension'
+SeoConfig:
+    Page: true
+    ErrorPage: false
+    RedirectorPage: false
+    VirtualPage: false

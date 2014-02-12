@@ -7,7 +7,7 @@
 class SeoObjectExtension extends SiteTreeExtension {
 
 
-	public static $db = array(
+	private static $db = array(
 		'SEOPageSubject' => 'Varchar(256)'
 	);  
 
@@ -63,6 +63,11 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @return none
 	 */
 	public function updateCMSFields(FieldList $fields) {
+
+		// use SEO module only on classes which are set up to use it in seo.yml / config.yml
+		if (!Config::inst()->get("SeoConfig", $this->owner->getClassName())) {
+			return;
+		}
 
 		Requirements::css(SEO_DIR.'/css/seo.css');
 		Requirements::javascript(SEO_DIR.'/javascript/seo.js');
