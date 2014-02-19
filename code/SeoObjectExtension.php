@@ -88,13 +88,13 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 		$fields->removeByName('Metadata');
 
-		$fields->addFieldToTab("Root.SEO", new TabSet('Options', 
+		/*$fields->addFieldToTab("Root.SEO", new TabSet('Options', 
 			new Tab('Metadata', _t('SEO.SEOMetaData', 'Meta Data')), 
 			new Tab('HelpAndSEOScore',  _t('SEO.SEOHelpAndScore', 'Help and SEO Score'))   
-		)); 
+		));*/ 
 
 
-		$fields->addFieldsToTab('Root.SEO.Options.Metadata', array(
+		$fields->addFieldsToTab('Root.SEO', array(
 							TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription'))
 								->setRightTitle(
 									_t(
@@ -113,24 +113,23 @@ class SeoObjectExtension extends SiteTreeExtension {
 								->addExtraClass('help')
 							)
 		);
-		$fields->addFieldsToTab('Root.SEO.Options.HelpAndSEOScore', array(
-			LiteralField::create('ScoreTitle', '<h4 class="seo_score">' . _t('SEO.SEOScore', 'SEO Score') . '</h4>'),
-			LiteralField::create('Score', $this->getHTMLStars()),
-			LiteralField::create('ScoreClear', '<div class="score_clear"></div>'),
-			GoogleSuggestField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)'))
-						
+		$fields->addFieldsToTab('Root.SEO', array(
+				TextField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)')),
+				LiteralField::create('ScoreTitle', '<h4 class="seo_score">' . _t('SEO.SEOScore', 'SEO Score') . '</h4>'),
+				LiteralField::create('Score', $this->getHTMLStars()),
+				LiteralField::create('ScoreClear', '<div class="score_clear"></div>')
 			)
 		);   
 
 		if ($this->checkPageSubjectDefined()) {
-			$fields->addFieldsToTab('Root.SEO.Options.HelpAndSEOScore', array(
+			$fields->addFieldsToTab('Root.SEO', array(
 				LiteralField::create('SimplePageSubjectCheckValues', $this->getHTMLSimplePageSubjectTest())      
 				)
 			);
 		}
 
 		if ($this->seo_score < 10) {
-			$fields->addFieldsToTab('Root.SEO.Options.HelpAndSEOScore', array(
+			$fields->addFieldsToTab('Root.SEO', array(
 				LiteralField::create('ScoreTipsTitle', '<h4 class="seo_score">' . _t('SEO.SEOScoreTips', 'SEO Score Tips') . '</h4>'),
 				LiteralField::create('ScoreTips', $this->seo_score_tips)     
 				)

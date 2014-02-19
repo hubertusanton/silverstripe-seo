@@ -34,6 +34,10 @@
 				var google_search_url = page_url_basehref + page_url_segment;
 				var google_search_description = page_metadata_description;
 				
+				if (google_search_description.length > 140) {
+					google_search_description = google_search_description.substring(0, 140) + ' ...';
+				}
+
 				var search_result_html = '';
 				search_result_html += '<h3>' + google_search_title + '</h3>';
 				search_result_html += '<div class="google_search_url">' + google_search_url + '</div>';
