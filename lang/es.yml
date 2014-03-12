@@ -11,7 +11,7 @@ es:
     SEOScoreTipPageSubjectInFirstParagraph: 'El tema de esta página no está presente en el primer párrafo del contenido de esta página'
     SEOScoreTipPageSubjectInURL: 'El tema de la página no está presente en la URL de esta página'
     SEOScoreTipPageSubjectInMetaDescription: 'El tema de esta página no está presente en la META descripción de esta página'
-    SEOScoreTipNumwordsContentOk: 'El contenido de esta página es muy corto y no tiene suficientes palabras. Por favor crear contenido que posea al menos 300 palabras basadas en el tema de la página.'       
+    SEOScoreTipNumwordsContentOk: 'El contenido de esta página es muy corto y no tiene suficientes palabras. Por favor crear contenido que posea al menos 250 palabras basadas en el tema de la página.'       
     SEOScoreTipPageTitleLengthOk: 'El título de la página no es lo suficientemente largo y debe tener un largo de al menos 40 caracteres.'
     SEOScoreTipContentHasLinks: 'El contenido de esta págin no tiee ningún enlace saliente.'
     SEOScoreTipPageHasImages: 'El contenido de esta página no tiene ninguna imagen'

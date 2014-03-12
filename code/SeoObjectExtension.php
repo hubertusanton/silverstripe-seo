@@ -362,13 +362,13 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	/**
 	 * checkNumWordsContent.
-	 * Checks if the number of words of the Page Content is 500
+	 * Checks if the number of words of the Page Content is 250
 	 * 
 	 * @param none
 	 * @return boolean
 	 */
 	private function checkNumWordsContent() {
-		return ($this->getNumWordsContent() > 500) ? true : false;
+		return ($this->getNumWordsContent() > 250) ? true : false;
 	}
 
 	/**

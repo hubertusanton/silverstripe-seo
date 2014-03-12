@@ -11,7 +11,7 @@ nl:
     SEOScoreTipPageSubjectInFirstParagraph: 'Pagina onderwerp komt niet voor in de eerste paragraaf van je pagina. Zorg ervoor dat het pagina onderwerp hierin staat.'
     SEOScoreTipPageSubjectInURL: 'Pagina onderwerp komt niet voor in de URL van je pagina'
     SEOScoreTipPageSubjectInMetaDescription: 'Pagina onderwerp komt niet voor in de Meta omschrijving van je pagina'
-    SEOScoreTipNumwordsContentOk: 'De pagina inhoud bevat te weinig woorden, dit dient minumaal 300 woorden te zijn. Voeg meer inhoud toe, gebaseerd op het Pagina onderwerp.'       
+    SEOScoreTipNumwordsContentOk: 'De pagina inhoud bevat te weinig woorden, dit dient minumaal 250 woorden te zijn. Voeg meer inhoud toe, gebaseerd op het Pagina onderwerp.'       
     SEOScoreTipPageTitleLengthOk: 'De titel van de pagina bevat te weinig tekens. Deze dient minimaal 40 tekens te bevatten.'
     SEOScoreTipContentHasLinks: 'De inoud van de pagina bevat geen (externe) links'
     SEOScoreTipPageHasImages: 'De inhoud van de pagina bevat geen afbeeldingen'

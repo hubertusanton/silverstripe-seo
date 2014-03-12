@@ -11,7 +11,7 @@ de:
     SEOScoreTipPageSubjectInFirstParagraph: 'Das Hauptkeyword der Seite fehlt im ersten Absatz der Seite'
     SEOScoreTipPageSubjectInURL: 'Das Hauptkeyword fehlt in der URL der Seite'
     SEOScoreTipPageSubjectInMetaDescription: 'Das Hauptkeyword fehlt in der Seitenbeschreibung (descrition)'
-    SEOScoreTipNumwordsContentOk: 'Der Inhalt der Seite ist zu gering. Erstellen Sie mindestens 300 Wörter Text, inhaltlich basierend auf dem hauptkeyword.'       
+    SEOScoreTipNumwordsContentOk: 'Der Inhalt der Seite ist zu gering. Erstellen Sie mindestens 250 Wörter Text, inhaltlich basierend auf dem hauptkeyword.'       
     SEOScoreTipPageTitleLengthOk: 'Der Seitentitel ist zu kurz. Er sollte mindestens 40 Zeichen lang sein.'
     SEOScoreTipContentHasLinks: 'Der Inhalt der Seite verfügt über keine (ausgehenden) Links.'
     SEOScoreTipPageHasImages: 'Die Seite verfügt über keine Bilder.'
