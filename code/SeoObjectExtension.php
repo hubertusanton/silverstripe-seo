@@ -55,6 +55,9 @@ class SeoObjectExtension extends SiteTreeExtension {
 		return $score_criteria_tips;
 	}
 
+
+
+
 	/**
 	 * updateCMSFields.
  	 * Update Silverstripe CMS Fields for SEO Module
@@ -156,13 +159,41 @@ class SeoObjectExtension extends SiteTreeExtension {
 		for ($i = 1; $i <= $num_stars; $i++) {
 			$html .= '<div class="star on"></div>';
 		}
+		if ($this->seo_score % 2) {
+			$html .= '<div class="star on-half"></div>';
+			$num_nostars--;	
+		}
 		for ($i = 1; $i <= $num_nostars; $i++) {
 			$html .= '<div class="star"></div>';
 		}        
 
+
 		$html .= '</div>';
 		return $html; 
 	}
+
+	/* MetaTags
+	*  Hooks into MetaTags SiteTree method and adds MetaTags for
+	*  Sharing of this page on Social Media (Facebook / Google+)
+	*/
+	public function MetaTags(&$tags) {
+
+		$siteConfig = SiteConfig::current_site_config();
+		
+		// facebook OpenGraph
+		/*
+		$tags .= '<meta property="og:locale" content="' . i18n::get_locale() . '" />' . "\n";
+		$tags .= '<meta property="og:title" content="' . $this->owner->Title . '" />' . "\n";
+		$tags .= '<meta property="og:description" content="' . $this->owner->MetaDescription . '" />' . "\n";
+		$tags .= '<meta property="og:url" content=" ' . $this->owner->AbsoluteLink() . ' " />' . "\n";
+		$tags .= '<meta property="og:site_name" content="' . $siteConfig->Title . '" />' . "\n";
+		$tags .= '<meta property="og:type" content="article" />' . "\n";
+		*/
+		//$tags .= '<meta property="og:image" content="" />' . "\n";
+
+
+	}
+
 
 	/**
 	 * getHTMLSimplePageSubjectTest.
