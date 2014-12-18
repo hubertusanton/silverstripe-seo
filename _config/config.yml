@@ -3,9 +3,8 @@ Name: 'seoextensions'
 ---
 Page:
   extensions:
-    0: 'SeoObjectExtension'
-SeoConfig:
-    Page: true
-    ErrorPage: false
-    RedirectorPage: false
-    VirtualPage: false
+    - 'SeoObjectExtension'
+# Example of how to exclude extra page types from showing the SEO tab:
+# SeoObjectExtension:
+#   excluded_page_types:
+#     - 'SomePage'

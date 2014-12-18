@@ -6,6 +6,17 @@
  */
 class SeoObjectExtension extends SiteTreeExtension {
 
+	/**
+	 * Specify page types that will not include the SEO tab
+	 *
+	 * @config
+	 * @var array
+	 */
+	private static $excluded_page_types = array(
+		'ErrorPage',
+		'RedirectorPage',
+		'VirtualPage'
+	);
 
 	private static $db = array(
 		'SEOPageSubject' => 'Varchar(256)'
@@ -67,8 +78,8 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function updateCMSFields(FieldList $fields) {
 
-		// use SEO module only on classes which are set up to use it in seo.yml / config.yml
-		if (!Config::inst()->get("SeoConfig", $this->owner->getClassName())) {
+		// exclude SEO tab from some pages
+		if (in_array($this->owner->getClassName(), Config::inst()->get("SeoObjectExtension", "excluded_page_types"))) {
 			return;
 		}
 
