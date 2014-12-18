@@ -129,6 +129,11 @@ class SeoObjectExtension extends SiteTreeExtension {
 		);
 		$fields->addFieldsToTab('Root.SEO', array(
 				GoogleSuggestField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)')),
+				LiteralField::create('', '<div class="message notice"><p>' . 
+					_t(
+						'SEO.SEOSaveNotice', 
+						"After making changes save this page to view the updated SEO score"
+					) . '</p></div>'),
 				LiteralField::create('ScoreTitle', '<h4 class="seo_score">' . _t('SEO.SEOScore', 'SEO Score') . '</h4>'),
 				LiteralField::create('Score', $this->getHTMLStars()),
 				LiteralField::create('ScoreClear', '<div class="score_clear"></div>')
