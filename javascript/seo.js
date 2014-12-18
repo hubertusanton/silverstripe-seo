@@ -8,10 +8,6 @@
 				onkeyup : function() {
 					set_preview_google_search_result();
 				},
-			});        
-
-			$('.cms-edit-form').entwine({
-
 				onmatch: function() {
 					set_preview_google_search_result();
 				}
