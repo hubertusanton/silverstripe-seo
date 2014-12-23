@@ -6,6 +6,17 @@
  */
 class SeoObjectExtension extends SiteTreeExtension {
 
+	/**
+	 * Specify page types that will not include the SEO tab
+	 *
+	 * @config
+	 * @var array
+	 */
+	private static $excluded_page_types = array(
+		'ErrorPage',
+		'RedirectorPage',
+		'VirtualPage'
+	);
 
 	private static $db = array(
 		'SEOPageSubject' => 'Varchar(256)'
@@ -67,8 +78,8 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function updateCMSFields(FieldList $fields) {
 
-		// use SEO module only on classes which are set up to use it in seo.yml / config.yml
-		if (!Config::inst()->get("SeoConfig", $this->owner->getClassName())) {
+		// exclude SEO tab from some pages
+		if (in_array($this->owner->getClassName(), Config::inst()->get("SeoObjectExtension", "excluded_page_types"))) {
 			return;
 		}
 
@@ -117,7 +128,12 @@ class SeoObjectExtension extends SiteTreeExtension {
 							)
 		);
 		$fields->addFieldsToTab('Root.SEO', array(
-				TextField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)')),
+				GoogleSuggestField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)')),
+				LiteralField::create('', '<div class="message notice"><p>' . 
+					_t(
+						'SEO.SEOSaveNotice', 
+						"After making changes save this page to view the updated SEO score"
+					) . '</p></div>'),
 				LiteralField::create('ScoreTitle', '<h4 class="seo_score">' . _t('SEO.SEOScore', 'SEO Score') . '</h4>'),
 				LiteralField::create('Score', $this->getHTMLStars()),
 				LiteralField::create('ScoreClear', '<div class="score_clear"></div>')

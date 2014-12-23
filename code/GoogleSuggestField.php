@@ -3,27 +3,12 @@
  * Field which gets suggestions from google search
  */
 class GoogleSuggestField extends FormField {
-
-	public $google_suggest_results = array();
-
-	public $google_suggest_url = 'http://google.com/complete/search?output=toolbar&q=';
-
-	public static $url_handlers = array(
-		'$Action!/$ID' => '$Action'
-	);
-
-	public static $allowed_actions = array(
-		'gsuggest'
-	);	
 	
 	public function Field($properties = array()) {
-
-		$jsBaseURL = Director::absoluteBaseURL();
-
-
+		
 		Requirements::customScript(<<<JS
 
-			(function($) {
+ 			(function($) {
 
 				$.entwine('ss', function($){
 
@@ -32,8 +17,20 @@ class GoogleSuggestField extends FormField {
 						onmatch : function() {
 
 							$( "#Form_EditForm_{$this->getName()}" ).autocomplete({
-								source: "{$jsBaseURL}admin/pages/edit/EditForm/field/{$this->getName()}/gsuggest/",
-								minLength: 2
+								source: function( request, response ) {
+									$.ajax({
+									  url: "http://suggestqueries.google.com/complete/search",
+									  dataType: "jsonp",
+									  data: {
+										  client: 'firefox',
+									    q: request.term
+									  },
+									  success: function( data ) {
+									    response( data[1] );
+									  }
+									});
+								},
+								minLength: 3
 							});
 	
 						},
@@ -41,8 +38,6 @@ class GoogleSuggestField extends FormField {
 				});
 
 			})(jQuery);
-
-
 JS
 );
 
@@ -51,46 +46,4 @@ JS
 		return parent::Field($properties);
 
 	}
-
-
-
-	/**
-	 *
-	 * @param SS_HTTPRequest $request
-	 * @return string
-	 */
-	public function gsuggest(SS_HTTPRequest $request) {
-	
-		if(!$request->getVar('term')) {
-			return $this->httpError(403, 'No term provided');
-
-		} 		
-
-		$suggest_for = $request->getVar('term');
-
-		$this->get_google_suggest($suggest_for);
-
-	}
-
-	private function get_google_suggest ($suggest_for = '') {
-
-		$url = file_get_contents($this->google_suggest_url . urlencode($suggest_for));
-		$suggestions = Convert::xml2array($url);
-
-		if (!empty($suggestions)) {
-
-			foreach ($suggestions['CompleteSuggestion'] as $suggestion)	{
-				$suggestion_record = array();
-				$suggestion_record['id'] =  $suggestion['suggestion']['@attributes']['data'];
-				$suggestion_record['label'] =  $suggestion['suggestion']['@attributes']['data'];
-				$suggestion_record['value'] = $suggestion['suggestion']['@attributes']['data'];
-
-				$this->google_suggest_results[] = $suggestion_record;
-			}
-		}
-
-		print (Convert::array2json($this->google_suggest_results));
-	}
-	
-
 }
