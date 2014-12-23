@@ -19,7 +19,12 @@ of the page which can be defined using a google suggest field.
 The fields for meta data in pages will be moved to a SEO part by this module.
 This is done for giving a realtime preview on the google search result of the page. 
 
-In seo.yml config file you can specify which classes will use the module. 
+In seo.yml config file you can specify which classes will NOT use the module. 
+By default every class extending Page will use the SEO module.
+Caution: The new master branch is not compatible with old releases see [this pull request](https://github.com/hubertusanton/silverstripe-seo/pull/10) from [jonom](https://github.com/jonom) (thanks!).
+Please use tag 1.1 in old sites with the old config and tag 2.0 for new projects, but updating to 2.0 will also fix google suggest and
+has some other fixes.
+
 
 ## Screenshots
 
@@ -35,7 +40,6 @@ Place the module dir in your website root and run /dev/build?flush=all
 * Option to set social networking title and images for sharing of page on facebook and google plus
 * Create a google webmaster code config 
 * Only check for outgoing links in content ommit links within site
-* Usage of half stars?
 * Translations to other languages
 * Check for page subject usage in other pages 
 * Check how many times the page subject has been used and give feedback to user
