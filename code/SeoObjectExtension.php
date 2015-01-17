@@ -220,26 +220,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function getHTMLSimplePageSubjectTest() {
 
-		$html = '<h4>' . _t('SEO.SEOSubjectCheckIntro', 'Your page subject was found in:'). '</h4>';
-		$html .= '<ul id="simple_pagesubject_test">';
-		$html .= '<li>' . _t('SEO.SEOSubjectCheckFirstParagraph', 'First paragraph:'). ' ';
-		$html .= ($this->checkPageSubjectInFirstParagraph()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';
-		$html .= '<li>' . _t('SEO.SEOSubjectCheckPageTitle', 'Page title:'). ' ';
-		$html .= ($this->checkPageSubjectInTitle()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';
-		$html .= '<li>' . _t('SEO.SEOSubjectCheckPageContent', 'Page content:'). ' ';
-		$html .= ($this->checkPageSubjectInContent()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';        
-		$html .= '<li>' . _t('SEO.SEOSubjectCheckPageURL', 'Page URL:'). ' ';
-		$html .= ($this->checkPageSubjectInUrl()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';    
-		$html .= '<li>' . _t('SEO.SEOSubjectCheckPageMetaDescription', 'Page meta description:'). ' ';
-		$html .= ($this->checkPageSubjectInMetaDescription()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';    
-
-		$html .= '</ul>';
-		return $html;
+		return $this->owner->renderWith('SimplePageSubjectTest');
 
 	}
 
@@ -307,7 +288,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return boolean
 	 */
-	private function checkPageSubjectInTitle() {
+	public function checkPageSubjectInTitle() {
 		if ($this->checkPageSubjectDefined()) {
 			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->Title)) {
 				return true;
@@ -326,7 +307,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return boolean
 	 */
-	private function checkPageSubjectInContent() {
+	public function checkPageSubjectInContent() {
 		if ($this->checkPageSubjectDefined()) {
 			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->Content)) {
 				return true;
@@ -345,7 +326,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return boolean
 	 */
-	private function checkPageSubjectInFirstParagraph() {
+	public function checkPageSubjectInFirstParagraph() {
 		if ($this->checkPageSubjectDefined()) {
 			$first_paragraph = $this->owner->dbObject('Content')->FirstParagraph();
 
@@ -369,7 +350,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return boolean
 	 */
-	private function checkPageSubjectInUrl() {
+	public function checkPageSubjectInUrl() {
 		if ($this->checkPageSubjectDefined()) {
 
 			$url_segment             = $this->owner->URLSegment;
@@ -393,7 +374,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return boolean
 	 */
-	private function checkPageSubjectInMetaDescription() {
+	public function checkPageSubjectInMetaDescription() {
 		if ($this->checkPageSubjectDefined()) {
 
 			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->MetaDescription)) {
