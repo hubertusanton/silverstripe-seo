@@ -33,7 +33,9 @@ class SeoObjectExtension extends SiteTreeExtension {
 		'pagetitle_length_ok' => false,
 		'content_has_links' => false,
 		'page_has_images' => false,
-		'content_has_subtitles' => false
+		'content_has_subtitles' => false,
+        'images_have_alt_tags' => false,
+        'images_have_title_tags' => false,
 	);
 
 	public $seo_score = 0;
@@ -60,7 +62,9 @@ class SeoObjectExtension extends SiteTreeExtension {
 			'pagetitle_length_ok' => _t('SEO.SEOScoreTipPageTitleLengthOk', 'The title of the page is not long enough and should have a length of at least 40 characters.'),
 			'content_has_links' => _t('SEO.SEOScoreTipContentHasLinks', 'The content of this page does not have any (outgoing) links.'),
 			'page_has_images' => _t('SEO.SEOScoreTipPageHasImages', 'The content of this page does not have any images.'),
-			'content_has_subtitles' => _t('SEO.SEOScoreTipContentHasSubtitles', 'The content of this page does not have any subtitles')
+			'content_has_subtitles' => _t('SEO.SEOScoreTipContentHasSubtitles', 'The content of this page does not have any subtitles'),
+			'images_have_alt_tags' => _t('SEO.SEOScoreTipImagesHaveAltTags', 'All images on this page do not have alt tags'),
+			'images_have_title_tags' => _t('SEO.SEOScoreTipImagesHaveTitleTags', 'All images on this page do not have title tags')
 		);
 
 		return $score_criteria_tips;
@@ -147,7 +151,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 			);
 		}
 
-		if ($this->seo_score < 10) {
+		if ($this->seo_score < 12) {
 			$fields->addFieldsToTab('Root.SEO', array(
 				LiteralField::create('ScoreTipsTitle', '<h4 class="seo_score">' . _t('SEO.SEOScoreTips', 'SEO Score Tips') . '</h4>'),
 				LiteralField::create('ScoreTips', $this->seo_score_tips)     
@@ -236,17 +240,21 @@ class SeoObjectExtension extends SiteTreeExtension {
 		$html .= '</li>';    
 		$html .= '<li>' . _t('SEO.SEOSubjectCheckPageMetaDescription', 'Page meta description:'). ' ';
 		$html .= ($this->checkPageSubjectInMetaDescription()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
-		$html .= '</li>';    
+		$html .= '</li>';
+        $html .= '<li>' . _t('SEO.SEOSubjectCheckImageAltTags', 'Image alt tags:'). ' ';
+        $html .= ($this->checkPageSubjectInImageAltTags()) ? '<span class="simple_pagesubject_yes">' . _t('SEO.SEOYes', 'Yes') . '</span>' : '<span class="simple_pagesubject_no">' . _t('SEO.SEONo', 'No') . '</span>';
+        $html .= '</li>';
 
-		$html .= '</ul>';
+
+        $html .= '</ul>';
 		return $html;
 
 	}
 
 	/**
 	 * getSEOScoreCalculation.
-	 * Do SEO score calculation and set class Array score_criteria 10 corresponding assoc values
- 	 * Also set class Integer seo_score with score 0-10 based on values which are true in score_criteria array
+	 * Do SEO score calculation and set class Array score_criteria 11 corresponding assoc values
+ 	 * Also set class Integer seo_score with score 0-11 based on values which are true in score_criteria array
  	 *  	 
 	 * @param none
 	 * @return none, set class array score_criteria tips boolean
@@ -263,11 +271,15 @@ class SeoObjectExtension extends SiteTreeExtension {
 		$this->score_criteria['content_has_links']              = $this->checkContentHasLinks();
 		$this->score_criteria['page_has_images']                = $this->checkPageHasImages();
 		$this->score_criteria['content_has_subtitles']          = $this->checkContentHasSubtitles();
+		$this->score_criteria['images_have_alt_tags']           = $this->checkImageAltTags();
+		$this->score_criteria['images_have_title_tags']         = $this->checkImageTitleTags();
 
 
 		$this->seo_score = intval(array_sum($this->score_criteria));
-
 	}
+
+
+
 
 	/**
 	 * setSEOScoreTipsUL.
@@ -288,6 +300,114 @@ class SeoObjectExtension extends SiteTreeExtension {
 		$this->seo_score_tips .= '</ul>';
 
 	}
+
+
+    /**
+     * checkPageSubjectInImageAlt.
+     * Checks if image alt tags contain page subject
+     *
+     * @param none
+     * @return boolean
+     */
+    private function checkPageSubjectInImageAltTags() {
+
+        $html = $this->owner->Content;
+
+        // for newly created page
+        if ($html == '') {
+            return false;
+        }
+
+        $dom = new DOMDocument;
+        $dom->loadHTML($html);
+
+        $images = $dom->getElementsByTagName('img');
+
+        foreach($images as $image){
+            if($image->hasAttribute('alt') && $image->getAttribute('alt') != ''){
+                if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $image->getAttribute('alt'))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * checkImageAltTags.
+     * Checks if images in content have alt tags
+     *
+     * @param none
+     * @return boolean
+     */
+    private function checkImageAltTags() {
+
+        $html = $this->owner->Content;
+
+        // for newly created page
+        if ($html == '') {
+            return false;
+        }
+
+        $dom = new DOMDocument;
+        $dom->loadHTML($html);
+
+        $images = $dom->getElementsByTagName('img');
+
+        $imagesWithAltTags = 0;
+        foreach($images as $image){
+            if($image->hasAttribute('alt') && $image->getAttribute('alt') != ''){
+                $imagesWithAltTags++;
+            }
+        }
+        if($imagesWithAltTags == $images->length){
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    /**
+     * checkImageTitleTags.
+     * Checks if images in content have title tags
+     *
+     * @param none
+     * @return boolean
+     */
+    private function checkImageTitleTags() {
+
+        $html = $this->owner->Content;
+
+        // for newly created page
+        if ($html == '') {
+            return false;
+        }
+
+        $dom = new DOMDocument;
+        $dom->loadHTML($html);
+
+        $images = $dom->getElementsByTagName('img');
+
+        $imagesWithTitleTags = 0;
+        foreach($images as $image){
+            if($image->hasAttribute('title') && $image->getAttribute('title') != ''){
+                //echo $image->getAttribute('title') . '<br>';
+                $imagesWithTitleTags++;
+            }
+        }
+
+        if($imagesWithTitleTags == $images->length){
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 	/**
 	 * checkPageSubjectDefined.
@@ -453,7 +573,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 		$elements = $dom->getElementsByTagName('a');
 		return ($elements->length) ? true : false;
 
-	}   
+	}
 
 	/**
 	 * checkPageHasImages.
