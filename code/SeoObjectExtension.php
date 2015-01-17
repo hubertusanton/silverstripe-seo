@@ -290,7 +290,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInTitle() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->Title)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Title)) {
 				return true;
 			}
 			else {
@@ -309,7 +309,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInContent() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->Content)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Content)) {
 				return true;
 			}
 			else {
@@ -331,7 +331,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 			$first_paragraph = $this->owner->dbObject('Content')->FirstParagraph();
 
 			if (trim($first_paragraph != '')) {
-				if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $first_paragraph)) {
+				if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $first_paragraph)) {
 					return true;
 				}
 				else {
@@ -356,7 +356,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 			$url_segment             = $this->owner->URLSegment;
 			$pagesubject_url_segment = $this->owner->generateURLSegment($this->owner->SEOPageSubject);
 
-			if (preg_match('/' . $pagesubject_url_segment . '/i', $url_segment)) {
+			if (preg_match('/' . preg_quote($pagesubject_url_segment, '/') . '/i', $url_segment)) {
 				return true;
 			}
 			else {
@@ -377,7 +377,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	public function checkPageSubjectInMetaDescription() {
 		if ($this->checkPageSubjectDefined()) {
 
-			if (preg_match('/' . $this->owner->SEOPageSubject . '/i', $this->owner->MetaDescription)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->MetaDescription)) {
 				return true;
 			}
 			else {
