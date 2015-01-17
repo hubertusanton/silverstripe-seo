@@ -40,4 +40,12 @@
             <span class="simple_pagesubject_no"><%t SEO.SEONo 'No' %></span>
         <% end_if %>
     </li>
+    <li>
+        <%t SEO.SEOSubjectCheckImageAltTags 'Image alt tags:' %>
+        <% if $checkPageSubjectInImageAltTags %>
+            <span class="simple_pagesubject_yes"><%t SEO.SEOYes 'Yes' %></span>
+        <% else %>
+            <span class="simple_pagesubject_no"><%t SEO.SEONo 'No' %></span>
+        <% end_if %>
+    </li>
 </ul>
