@@ -104,7 +104,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 		// move Metadata field from Root.Main to SEO tab for visualising direct impact on search result
 
-		$fields->removeByName('Metadata');
+		$fields->removeFieldFromTab('Root.Main', 'Metadata');
 
 		/*$fields->addFieldToTab("Root.SEO", new TabSet('Options', 
 			new Tab('Metadata', _t('SEO.SEOMetaData', 'Meta Data')), 
