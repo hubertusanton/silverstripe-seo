@@ -285,7 +285,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     public function checkPageSubjectInImageAltTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -318,7 +318,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageAltTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -354,7 +354,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageTitleTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -420,7 +420,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInContent() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Content)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->getContent())) {
 				return true;
 			}
 			else {
