@@ -7,13 +7,10 @@ Page:
 # Example of how to exclude extra page types from showing the SEO tab:
 # SeoObjectExtension:
 #   excluded_page_types:
-<<<<<<< HEAD
 #     - 'SomePage'
 
-ProductGroupPage:
-  SeoContent:
-    - 'TopContent'
-    - 'BottomContent'
-=======
-#     - 'SomePage'
->>>>>>> a5cfc3ca0ead498c35f965e5a642f35c3550c15c
+# Example of how to set content fields to be used for a page type
+#NewPage:
+#  SeoContent:
+#    - 'ContentField1'
+#    - 'ContentField2'
