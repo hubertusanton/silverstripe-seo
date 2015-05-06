@@ -1,0 +1,15 @@
+---
+Name: 'seoextensions'
+---
+Page:
+  extensions:
+    - 'SeoObjectExtension'
+# Example of how to exclude extra page types from showing the SEO tab:
+# SeoObjectExtension:
+#   excluded_page_types:
+#     - 'SomePage'
+
+ProductGroupPage:
+  SeoContent:
+    - 'TopContent'
+    - 'BottomContent'
