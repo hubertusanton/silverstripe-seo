@@ -25,7 +25,6 @@ Caution: The new master branch is not compatible with old releases see [this pul
 Please use tag 1.1 in old sites with the old config and tag 2.0 for new projects, but updating to 2.0 will also fix google suggest and
 has some other fixes.
 
-
 ## Screenshots
 
 ![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen2.png)

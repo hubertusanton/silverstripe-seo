@@ -8,3 +8,9 @@ Page:
 # SeoObjectExtension:
 #   excluded_page_types:
 #     - 'SomePage'
+
+# Example of how to set content fields to be used for a page type
+#NewPage:
+#  SeoContent:
+#    - 'ContentField1'
+#    - 'ContentField2'

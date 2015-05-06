@@ -211,7 +211,6 @@ class SeoObjectExtension extends SiteTreeExtension {
 		*/
 		//$tags .= '<meta property="og:image" content="" />' . "\n";
 
-
 	}
 
 
@@ -230,6 +229,8 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	/**
 	 * getSEOScoreCalculation.
+	 * Do SEO score calculation and set class Array score_criteria 10 corresponding assoc values
+ 	 * Also set class Integer seo_score with score 0-10 based on values which are true in score_criteria array
 	 * Do SEO score calculation and set class Array score_criteria 11 corresponding assoc values
  	 * Also set class Integer seo_score with score 0-11 based on values which are true in score_criteria array
  	 *  	 
@@ -255,9 +256,6 @@ class SeoObjectExtension extends SiteTreeExtension {
 		$this->seo_score = intval(array_sum($this->score_criteria));
 	}
 
-
-
-
 	/**
 	 * setSEOScoreTipsUL.
 	 * Set SEO Score tips ul > li for SEO tips literal field, based on score_criteria
@@ -278,7 +276,6 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	}
 
-
     /**
      * checkPageSubjectInImageAlt.
      * Checks if image alt tags contain page subject
@@ -288,7 +285,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     public function checkPageSubjectInImageAltTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -321,7 +318,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageAltTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -357,7 +354,7 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageTitleTags() {
 
-        $html = $this->owner->Content;
+        $html = $this->getContent();
 
         // for newly created page
         if ($html == '') {
@@ -383,8 +380,6 @@ class SeoObjectExtension extends SiteTreeExtension {
 
         return false;
     }
-
-
 
 	/**
 	 * checkPageSubjectDefined.
@@ -425,7 +420,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInContent() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Content)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->getContent())) {
 				return true;
 			}
 			else {
@@ -537,7 +532,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	private function checkContentHasLinks() {
 
-		$html = $this->owner->Content;
+		$html = $this->getContent();
 
 		// for newly created page
 		if ($html == '') {
@@ -561,7 +556,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	private function checkPageHasImages() {
 
-		$html = $this->owner->Content;
+		$html = $this->getContent();
 
 		// for newly created page
 		if ($html == '') {
@@ -583,7 +578,8 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @return boolean
 	 */ 
 	private function checkContentHasSubtitles() {
-		$html = $this->owner->Content;
+
+		$html = $this->getContent();
 
 		// for newly created page
 		if ($html == '') {
@@ -604,8 +600,9 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * @param none
 	 * @return Integer Number of words in content
 	 */ 
+
 	public function getNumWordsContent() {
-		return str_word_count((Convert::xml2raw($this->owner->Content)));  
+		return str_word_count((Convert::xml2raw($this->getContent())));  
 	}
 
 	/**
@@ -619,4 +616,28 @@ class SeoObjectExtension extends SiteTreeExtension {
 		return strlen($this->owner->Title);  
 	}    
 	
+	/*
+	*
+	*	getPageContent
+	*	function to get page content based on config.yml file, to allow 
+	*	for different or multiple content fields
+	*
+	*/
+
+	public function getContent() {
+
+		$content = "";
+
+		$contentFields = Config::inst()->get($this->owner->getClassName(), "SeoContent");
+
+		if (!$contentFields)
+			$contentFields = array('Content');
+
+		foreach ($contentFields as $contentField => $value) {
+			$content .= $this->owner->getField($value);
+		}
+
+		return $content;
+	}
+
 }
