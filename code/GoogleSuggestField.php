@@ -19,7 +19,11 @@ class GoogleSuggestField extends FormField {
 							$( "#Form_EditForm_{$this->getName()}" ).autocomplete({
 								source: function( request, response ) {
 									$.ajax({
+<<<<<<< HEAD
 									  url: "http://suggestqueries.google.com/complete/search",
+=======
+									  url: "//suggestqueries.google.com/complete/search",
+>>>>>>> a5cfc3ca0ead498c35f965e5a642f35c3550c15c
 									  dataType: "jsonp",
 									  data: {
 										  client: 'firefox',
