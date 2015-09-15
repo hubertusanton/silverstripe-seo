@@ -29,3 +29,4 @@ nl:
     SEOSubjectCheckIntro: 'Je pagina onderwerp is gevonden in:'
     SEOGoogleWebmasterMetaTag: 'Google webmaster meta tag'
     SEOGoogleWebmasterMetaTagRightTitle: 'Full Google webmaster meta tag. Bijvoorbeeld &lt;meta name="google-site-verification" content="hjhjhJHG12736JHGdfsdf" &gt;'
+    SEOScoreTipImagesHaveTitleTags: 'Alle afbeeldingen op deze pagina hebben geen title tags'

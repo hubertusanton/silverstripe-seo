@@ -164,14 +164,18 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	/**
 	 * getHTMLStars.
- 	 * Get html of stars rating in CMS
+ 	 * Get html of stars rating in CMS, maximum score is 12
+     * threshold 2
  	 *  	 
 	 * @param none
 	 * @return String $html
 	 */
 	public function getHTMLStars() {
 
-		$num_stars   = intval(ceil($this->seo_score) / 2);
+        $treshold_score = $this->seo_score - 2 < 0 ? 0 : $this->seo_score - 2;
+
+		$num_stars   = intval(ceil($treshold_score) / 2);
+
 		$num_nostars = 5 - $num_stars;
 
 		$html = '<div id="fivestar-widget">';
@@ -179,7 +183,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 		for ($i = 1; $i <= $num_stars; $i++) {
 			$html .= '<div class="star on"></div>';
 		}
-		if ($this->seo_score % 2) {
+		if ($treshold_score % 2) {
 			$html .= '<div class="star on-half"></div>';
 			$num_nostars--;	
 		}
@@ -230,10 +234,10 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	/**
 	 * getSEOScoreCalculation.
-	 * Do SEO score calculation and set class Array score_criteria 10 corresponding assoc values
- 	 * Also set class Integer seo_score with score 0-10 based on values which are true in score_criteria array
+	 * Do SEO score calculation and set class Array score_criteria 12 corresponding assoc values
+ 	 * Also set class Integer seo_score with score 0-12 based on values which are true in score_criteria array
 	 * Do SEO score calculation and set class Array score_criteria 11 corresponding assoc values
- 	 * Also set class Integer seo_score with score 0-11 based on values which are true in score_criteria array
+ 	 * Also set class Integer seo_score with score 0-12 based on values which are true in score_criteria array
  	 *  	 
 	 * @param none
 	 * @return none, set class array score_criteria tips boolean
