@@ -26,3 +26,5 @@ en:
     SEOSubjectCheckPageContent: 'Page content:'
     SEOSubjectCheckPageURL: 'Page URL:'
     SEOSubjectCheckPageMetaDescription: 'Page meta description:'
+    SEOGoogleWebmasterMetaTag: 'Google webmaster meta tag'
+    SEOGoogleWebmasterMetaTagRightTitle: 'Full Google webmaster meta tag For example &lt;meta name="google-site-verification" content="hjhjhJHG12736JHGdfsdf" &gt;'

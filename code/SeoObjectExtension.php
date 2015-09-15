@@ -211,6 +211,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 		*/
 		//$tags .= '<meta property="og:image" content="" />' . "\n";
 
+        $tags .= $siteConfig->GoogleWebmasterMetaTag . "\n";
 	}
 
 

@@ -26,4 +26,6 @@ nl:
     SEOSubjectCheckPageContent: 'Pagina inhoud:'
     SEOSubjectCheckPageURL: 'Pagina URL:'
     SEOSubjectCheckPageMetaDescription: 'Pagina meta omschrijving:'    
-    SEOSubjectCheckIntro: 'Je pagina onderwerp is gevonden in:' 
+    SEOSubjectCheckIntro: 'Je pagina onderwerp is gevonden in:'
+    SEOGoogleWebmasterMetaTag: 'Google webmaster meta tag'
+    SEOGoogleWebmasterMetaTagRightTitle: 'Full Google webmaster meta tag. Bijvoorbeeld &lt;meta name="google-site-verification" content="hjhjhJHG12736JHGdfsdf" &gt;'
