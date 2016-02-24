@@ -281,6 +281,26 @@ class SeoObjectExtension extends SiteTreeExtension {
 
 	}
 
+	/**
+	 * checkContentHasSubtitles.
+	 * check if page Content has a h2's in it
+	 *
+	 * @param $html String
+	 * @return DOMDocument Object
+	 */
+	private function createDOMDocumentFromHTML($html = null) {
+
+		if ($html != null) {
+			libxml_use_internal_errors(true);
+			$dom = new DOMDocument;
+			$dom->loadHTML($html);
+			libxml_clear_errors();
+			libxml_use_internal_errors(false);
+			return $dom;
+		}
+	}
+
+
     /**
      * checkPageSubjectInImageAlt.
      * Checks if image alt tags contain page subject
@@ -290,15 +310,14 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     public function checkPageSubjectInImageAltTags() {
 
-        $html = $this->getContent();
+        $html = $this->getPageContent();
 
         // for newly created page
         if ($html == '') {
             return false;
         }
 
-        $dom = new DOMDocument;
-        $dom->loadHTML($html);
+        $dom = $this->createDOMDocumentFromHTML($html);
 
         $images = $dom->getElementsByTagName('img');
 
@@ -323,15 +342,14 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageAltTags() {
 
-        $html = $this->getContent();
+        $html = $this->getPageContent();
 
         // for newly created page
         if ($html == '') {
             return false;
         }
 
-        $dom = new DOMDocument;
-        $dom->loadHTML($html);
+        $dom = $this->createDOMDocumentFromHTML($html);
 
         $images = $dom->getElementsByTagName('img');
 
@@ -359,15 +377,14 @@ class SeoObjectExtension extends SiteTreeExtension {
      */
     private function checkImageTitleTags() {
 
-        $html = $this->getContent();
+        $html = $this->getPageContent();
 
         // for newly created page
         if ($html == '') {
             return false;
         }
 
-        $dom = new DOMDocument;
-        $dom->loadHTML($html);
+        $dom = $this->createDOMDocumentFromHTML($html);
 
         $images = $dom->getElementsByTagName('img');
 
@@ -425,7 +442,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInContent() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->getContent())) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->getPageContent())) {
 				return true;
 			}
 			else {
@@ -537,15 +554,14 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	private function checkContentHasLinks() {
 
-		$html = $this->getContent();
+		$html = $this->getPageContent();
 
 		// for newly created page
 		if ($html == '') {
 			return false;
 		}
 
-		$dom = new DOMDocument;
-		$dom->loadHTML($html);
+		$dom = $this->createDOMDocumentFromHTML($html);
 
 		$elements = $dom->getElementsByTagName('a');
 		return ($elements->length) ? true : false;
@@ -561,19 +577,22 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	private function checkPageHasImages() {
 
-		$html = $this->getContent();
+		$html = $this->getPageContent();
 
 		// for newly created page
 		if ($html == '') {
 			return false;
 		}
 
-		$dom = new DOMDocument;
-		$dom->loadHTML($html);
+		$dom = $this->createDOMDocumentFromHTML($html);
 
 		$elements = $dom->getElementsByTagName('img');
 		return ($elements->length) ? true : false;
-	}       
+
+	}
+
+
+
 
 	/**
 	 * checkContentHasSubtitles.
@@ -584,19 +603,19 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	private function checkContentHasSubtitles() {
 
-		$html = $this->getContent();
+		$html = $this->getPageContent();
 
 		// for newly created page
 		if ($html == '') {
 			return false;
 		}
 
-		$dom = new DOMDocument;
-		$dom->loadHTML($html);
-
+		$dom = $this->createDOMDocumentFromHTML($html);
 		$elements = $dom->getElementsByTagName('h2');
+
 		return ($elements->length) ? true : false;
-	}   
+
+	}
 
 	/**
 	 * getNumWordsContent.
@@ -607,7 +626,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 
 	public function getNumWordsContent() {
-		return str_word_count((Convert::xml2raw($this->getContent())));  
+		return str_word_count((Convert::xml2raw($this->getPageContent())));
 	}
 
 	/**
@@ -619,30 +638,55 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */ 
 	public function getNumCharsTitle() {
 		return strlen($this->owner->Title);  
-	}    
-	
+	}
+
+	/**
+	 * Mimics the bevahiour of $Layout in templates
+	 * @return HTMLText
+	 */
+	public function RenderLayout() {
+		$template = $this->findLayout();
+		$subtemplateViewer = new SSViewer($template);
+		$subtemplateViewer->includeRequirements(false);
+		return $subtemplateViewer->process($this->getOwner());
+	}
+
+	/**
+	 * Find the appropriate "$Layout" template for this class
+	 * @throws Exception
+	 * @return string
+	 */
+	protected function findLayout() {
+		$theme = Config::inst()->get('SSViewer', 'theme');
+		$templateList = array();
+		$parentClass = $this->getOwner()->class;
+		while($parentClass !== 'SiteTree') {
+			$templateList[] = $parentClass;
+			$parentClass = get_parent_class($parentClass);
+		}
+		$templates = SS_TemplateLoader::instance()->findTemplates($templateList, $theme);
+		if( ! isset($templates['Layout'])) {
+			throw new Exception('No layout found for class: ' . get_class($this->getOwner()));
+		}
+
+		return $templates['Layout'];
+	}
+
+
 	/*
 	*
 	*	getPageContent
-	*	function to get page content based on config.yml file, to allow 
-	*	for different or multiple content fields
+	*	function to get html content of page which SEO score is based on
+	*   (we use the same info as gets back from $Layout in template)
 	*
 	*/
+	public function getPageContent() {
 
-	public function getContent() {
+		Config::inst()->update('SSViewer', 'theme_enabled', true);
+		$rendered_layout = $this->RenderLayout();
+		Config::inst()->update('SSViewer', 'theme_enabled', false);
+		return $rendered_layout;
 
-		$content = "";
-
-		$contentFields = Config::inst()->get($this->owner->getClassName(), "SeoContent");
-
-		if (!$contentFields)
-			$contentFields = array('Content');
-
-		foreach ($contentFields as $contentField => $value) {
-			$content .= $this->owner->getField($value);
-		}
-
-		return $content;
 	}
 
 }
