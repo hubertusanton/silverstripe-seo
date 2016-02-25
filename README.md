@@ -52,7 +52,7 @@ This module is published under BSD 2-clause license, although these are not in t
 
 http://www.opensource.org/licenses/BSD-2-Clause
 
-Copyright (c) 2013, Bart van Irsel
+Copyright (c) 2016, Bart van Irsel
 
 All rights reserved.
 
