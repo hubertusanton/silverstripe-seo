@@ -285,7 +285,7 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 * checkContentHasSubtitles.
 	 * check if page Content has a h2's in it
 	 *
-	 * @param $html String
+	 * @param HTMLText $html String
 	 * @return DOMDocument Object
 	 */
 	private function createDOMDocumentFromHTML($html = null) {
