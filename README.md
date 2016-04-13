@@ -12,7 +12,7 @@
 
 ## Documentation
 
-This modules helps the administrator of the Silverstripe website in getting good results in search engines.
+This module helps the administrator of the Silverstripe website in getting good results in search engines.
 A rating of the SEO of the current page helps the website editor creating good content around a subject
 of the page which can be defined using a google suggest field.
 
@@ -35,7 +35,6 @@ Place the module dir in your website root and run /dev/build?flush=all
 
 ## TODO's for next versions
 
-* Check img tags for title and alt tags
 * Option to set social networking title and images for sharing of page on facebook and google plus
 * Create a google webmaster code config 
 * Only check for outgoing links in content ommit links within site
