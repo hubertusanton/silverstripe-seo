@@ -18,6 +18,14 @@ class SeoObjectExtension extends SiteTreeExtension {
 		'VirtualPage'
 	);
 
+    /**
+     * Let the webmaster tag be edited by the CMS admin
+     *
+     * @config
+     * @var boolean
+     */
+	private static $use_webmaster_tag = true;
+
 	private static $db = array(
 		'SEOPageSubject' => 'Varchar(256)'
 	);  
@@ -215,7 +223,9 @@ class SeoObjectExtension extends SiteTreeExtension {
 		*/
 		//$tags .= '<meta property="og:image" content="" />' . "\n";
 
-        $tags .= $siteConfig->GoogleWebmasterMetaTag . "\n";
+		if (Config::inst()->get('SeoObjectExtension', 'use_webmaster_tag')) {
+			$tags .= $siteConfig->GoogleWebmasterMetaTag . "\n";
+		}
 	}
 
 
@@ -423,10 +433,11 @@ class SeoObjectExtension extends SiteTreeExtension {
 	 */
 	public function checkPageSubjectInTitle() {
 		if ($this->checkPageSubjectDefined()) {
-			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Title)) {
+			if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->MetaTitle)) {
 				return true;
-			}
-			else {
+			} elseif (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Title)) {
+				return true;
+			} else {
 				return false;
 			}
 		}
