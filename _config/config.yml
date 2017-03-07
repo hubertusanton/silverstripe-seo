@@ -7,8 +7,6 @@ Page:
 SiteConfig:
   extensions:
     - SeoSiteConfig
-#SeoObjectExtension:
-#  use_webmaster_tag: true
 # Example of how to exclude extra page types from showing the SEO tab:
 # SeoObjectExtension:
 #   excluded_page_types:
