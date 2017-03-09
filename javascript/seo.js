@@ -26,7 +26,7 @@
 				siteconfig_title = $('#ss_siteconfig_title').html();
 
 				// build google search preview
-				var google_search_title = page_title + ' &raquo; ' + siteconfig_title;
+				var google_search_title = (page_metadata_title ? page_metadata_title : page_title) + ' &raquo; ' + siteconfig_title;
 				var google_search_url = page_url_basehref + page_url_segment;
 				var google_search_description = page_metadata_description;
 				
