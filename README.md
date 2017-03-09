@@ -3,7 +3,7 @@
 ## Maintainer Contact
 
 * Bart van Irsel (Nickname: hubertusanton)
-* [Dertig Media](http://www.30.nl)
+* [Webium](http://www.webium.nl)
 
 
 ## Requirements
@@ -51,7 +51,7 @@ This module is published under BSD 2-clause license, although these are not in t
 
 http://www.opensource.org/licenses/BSD-2-Clause
 
-Copyright (c) 2016, Bart van Irsel
+Copyright (c) 2017, Bart van Irsel
 
 All rights reserved.
 
