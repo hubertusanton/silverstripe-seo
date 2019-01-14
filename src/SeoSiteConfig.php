@@ -1,14 +1,20 @@
 <?php
 
+namespace Hubertusanton\SilverStripeSeo;
+
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Config\Config;
+use SilverStripe\ORM\DataExtension;
+
 /**
- * SeoSiteConfig
- * adds site-wide settings for SEO
+ * SeoSiteConfig adds site-wide settings for SEO
  */
 class SeoSiteConfig extends DataExtension
 {
-    private static $db = array(
+    private static $db = [
         'GoogleWebmasterMetaTag' => 'Varchar(512)'
-    );
+    ];
 
     /**
      * updateCMSFields.
@@ -18,7 +24,7 @@ class SeoSiteConfig extends DataExtension
      */
     public function updateCMSFields(FieldList $fields)
     {
-        if (Config::inst()->get('SeoObjectExtension', 'use_webmaster_tag')) {
+        if (Config::inst()->get(SeoObjectExtension::class, 'use_webmaster_tag')) {
             $fields->addFieldToTab(
                 "Root.SEO",
                 TextareaField::create(

@@ -1,27 +1,34 @@
 {
-	"name": "hubertusanton/silverstripe-seo",
-	"description": "SEO module for Silverstripe",
-	"type": "silverstripe-module",
-	"homepage": "http://github.com/hubertusanton/silverstripe-seo",
-	"keywords": ["silverstripe", "seo"],
-	"license": "BSD-3-Clause",
-	"authors": [
-		{
-			"name": "Bart van Irsel",
-			"email": "bart@30.nl"
-		}
-	],
-	"support": {
-		"issues": "http://github.com/hubertusanton/silverstripe-seo/issues"
-	},
-	"require": {
-		"silverstripe/framework": "3.*"
-	},
-	"extra": {
-		"installer-name": "seo",
-		"screenshots": [
-			"images/screen2.png",
-			"images/screen3.png"
-		]
-	}
+    "name": "hubertusanton/silverstripe-seo",
+    "description": "SEO module for Silverstripe",
+    "type": "silverstripe-vendormodule",
+    "homepage": "http://github.com/hubertusanton/silverstripe-seo",
+    "keywords": ["silverstripe", "seo"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Bart van Irsel",
+            "email": "bart@30.nl"
+        }
+    ],
+    "support": {
+        "issues": "http://github.com/hubertusanton/silverstripe-seo/issues"
+    },
+    "require": {
+        "silverstripe/framework": "^4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hubertusanton\\SilverStripeSeo\\": "src/"
+        }
+    },
+    "extra": {
+        "expose": [
+            "client"
+        ],
+        "screenshots": [
+            "client/images/screen2.png",
+            "client/images/screen3.png"
+        ]
+    }
 }
