@@ -5,11 +5,13 @@ namespace Hubertusanton\SilverStripeSeo;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
-use SilverStripe\Config\Config;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\Requirements;
-use SilverStripe\View\SSViewer;
+use SilverStripe\Core\Convert;
+use SilverStripe\Control\Director;
+use DOMDocument;
 
 /**
  * SeoObjectExtension extends SiteTree with functionality for helping content authors to
@@ -103,12 +105,16 @@ class SeoObjectExtension extends DataExtension
     public function updateCMSFields(FieldList $fields) {
 
         // exclude SEO tab from some pages
-        if (in_array($this->owner->getClassName(), Config::inst()->get("SeoObjectExtension", "excluded_page_types"))) {
-            return;
+        $excluded = Config::inst()->get(self::class, 'excluded_page_types');
+
+        if ($excluded) {
+            if (in_array($this->owner->getClassName(), $excluded)) {
+                return;
+            }
         }
 
-        Requirements::css(SEO_DIR.'/css/seo.css');
-        Requirements::javascript(SEO_DIR.'/javascript/seo.js');
+        Requirements::css('hubertusanton/silverstripe-seo:css/seo.css');
+        Requirements::javascript('hubertusanton/silverstripe-seo:javascript/seo.js');
 
         // better do this below in some init method? :
         $this->getSEOScoreCalculation();
@@ -664,52 +670,19 @@ class SeoObjectExtension extends DataExtension
     }
 
     /**
-     * Mimics the behaviour of $Layout in templates.
+     *   getPageContent
+     *   function to get html content of page which SEO score is based on
+     *   (we use the same info as gets back from $Layout in template)
      *
-     * @return HTMLText
      */
-    public function RenderLayout() {
-        $template = $this->findLayout();
-        $subtemplateViewer = new SSViewer($template);
-        $subtemplateViewer->includeRequirements(false);
-        return $subtemplateViewer->process($this->getOwner());
-    }
+    public function getPageContent()
+    {
+        $response = Director::test($this->owner->Link());
 
-    /**
-     * Find the appropriate "$Layout" template for this class
-     * @throws Exception
-     * @return string
-     */
-    protected function findLayout() {
-        $theme = Config::inst()->get('SSViewer', 'theme');
-        $templateList = array();
-        $parentClass = $this->getOwner()->class;
-        while($parentClass !== 'SiteTree') {
-            $templateList[] = $parentClass;
-            $parentClass = get_parent_class($parentClass);
-        }
-        $templates = SS_TemplateLoader::instance()->findTemplates($templateList, $theme);
-        if( ! isset($templates['Layout'])) {
-            throw new Exception('No layout found for class: ' . get_class($this->getOwner()));
+        if (!$response->isError()) {
+            return $response->getBody();
         }
 
-        return $templates['Layout'];
+        return '';
     }
-
-
-    /**
-    *   getPageContent
-    *   function to get html content of page which SEO score is based on
-    *   (we use the same info as gets back from $Layout in template)
-    *
-    */
-    public function getPageContent() {
-
-        Config::inst()->update('SSViewer', 'theme_enabled', true);
-        $rendered_layout = $this->RenderLayout();
-        Config::inst()->update('SSViewer', 'theme_enabled', false);
-        return $rendered_layout;
-
-    }
-
 }

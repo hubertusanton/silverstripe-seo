@@ -3,10 +3,10 @@ Name: 'seoextensions'
 ---
 Page:
   extensions:
-    - SeoObjectExtension
+    - Hubertusanton\SilverStripeSeo\SeoObjectExtension
 SiteConfig:
   extensions:
-    - SeoSiteConfig
+    - Hubertusanton\SilverStripeSeo\SeoSiteConfig
 # Example of how to exclude extra page types from showing the SEO tab:
 # SeoObjectExtension:
 #   excluded_page_types:
