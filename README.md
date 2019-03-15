@@ -27,8 +27,8 @@ has some other fixes.
 
 ## Screenshots
 
-![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen2.png)
-![ScreenShot](https://raw.github.com/hubertusanton/silverstripe-seo/master/images/screen3.png)
+![ScreenShot](https://raw.githubusercontent.com/hubertusanton/silverstripe-seo/master/1.png)
+![ScreenShot](https://raw.githubusercontent.com/hubertusanton/silverstripe-seo/master/2.png)
 
 ## Installation
 Place the module dir in your website root and run /dev/build?flush=all
