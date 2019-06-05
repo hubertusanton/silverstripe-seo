@@ -113,8 +113,8 @@ class SeoObjectExtension extends DataExtension
             }
         }
 
-        Requirements::css('hubertusanton/silverstripe-seo:css/seo.css');
-        Requirements::javascript('hubertusanton/silverstripe-seo:javascript/seo.js');
+        Requirements::css('hubertusanton/silverstripe-seo:client/css/seo.css');
+        Requirements::javascript('hubertusanton/silverstripe-seo:client/js/seo.js');
 
         // better do this below in some init method? :
         $this->getSEOScoreCalculation();
