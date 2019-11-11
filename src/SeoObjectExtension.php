@@ -146,14 +146,6 @@ class SeoObjectExtension extends DataExtension
                                         "Search engines use this content for displaying search results (although it will not influence their ranking)."
                                     )
                                 )
-                                ->addExtraClass('help'),
-                            TextareaField::create("ExtraMeta",$this->owner->fieldLabel('ExtraMeta'))
-                                ->setRightTitle(
-                                    _t(
-                                        'SiteTree.METAEXTRAHELP',
-                                        "HTML tags for additional meta information. For example &lt;meta name=\"customName\" content=\"your custom content here\" /&gt;"
-                                    )
-                                )
                                 ->addExtraClass('help')
                             )
         );
