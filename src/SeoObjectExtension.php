@@ -132,12 +132,6 @@ class SeoObjectExtension extends DataExtension
 
         $fields->removeFieldFromTab('Root.Main', 'Metadata');
 
-        /*$fields->addFieldToTab("Root.SEO", new TabSet('Options',
-            new Tab('Metadata', _t('SEO.SEOMetaData', 'Meta Data')),
-            new Tab('HelpAndSEOScore',  _t('SEO.SEOHelpAndScore', 'Help and SEO Score'))
-        ));*/
-
-
         $fields->addFieldsToTab('Root.SEO', array(
                             TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription'))
                                 ->setRightTitle(
