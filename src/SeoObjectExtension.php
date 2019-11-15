@@ -2,6 +2,8 @@
 
 namespace Hubertusanton\SilverStripeSeo;
 
+use ArrayData;
+use ArrayList;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
@@ -12,6 +14,7 @@ use SilverStripe\View\Requirements;
 use SilverStripe\Core\Convert;
 use SilverStripe\Control\Director;
 use DOMDocument;
+use SSViewer;
 
 /**
  * SeoObjectExtension extends SiteTree with functionality for helping content authors to
@@ -230,6 +233,45 @@ class SeoObjectExtension extends DataExtension
         if (Config::inst()->get('SeoObjectExtension', 'use_webmaster_tag')) {
             $tags .= $siteConfig->GoogleWebmasterMetaTag . "\n";
         }
+    }
+
+    /**
+     * Return a breadcrumb trail to this page. Excludes "hidden" pages
+     * (with ShowInMenus=0). Adds extra microdata compared to
+     *
+     * @param int $maxDepth The maximum depth to traverse.
+     * @param boolean $unlinked Do not make page names links
+     * @param string $stopAtPageType ClassName of a page to stop the upwards traversal.
+     * @param boolean $showHidden Include pages marked with the attribute ShowInMenus = 0
+     * @return string The breadcrumb trail.
+     */
+    public function SeoBreadcrumbs($separator = '&raquo;', $addhome = true, $maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
+        $page = $this->owner;
+        $pages = array();
+
+        while(
+            $page
+            && (!$maxDepth || count($pages) < $maxDepth)
+            && (!$stopAtPageType || $page->ClassName != $stopAtPageType)
+        ) {
+            if($showHidden || $page->ShowInMenus || ($page->ID == $this->owner->ID)) {
+                $pages[] = $page;
+            }
+
+            $page = $page->Parent;
+        }
+        // add homepage;
+        if($addhome){
+            $pages[] = $this->owner->getHomepageCurrLang();
+        }
+
+        $template = new SSViewer('SeoBreadcrumbsTemplate');
+
+        return $template->process($this->owner->customise(new ArrayData(array(
+            'BreadcrumbSeparator' => $separator,
+            'AddHome' => $addhome,
+            'Pages' => new ArrayList(array_reverse($pages))
+        ))));
     }
 
 
