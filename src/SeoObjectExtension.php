@@ -4,6 +4,7 @@ namespace Hubertusanton\SilverStripeSeo;
 
 use ArrayData;
 use ArrayList;
+use RootURLController;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
@@ -14,6 +15,7 @@ use SilverStripe\View\Requirements;
 use SilverStripe\Core\Convert;
 use SilverStripe\Control\Director;
 use DOMDocument;
+use SiteTree;
 use SSViewer;
 
 /**
@@ -262,7 +264,7 @@ class SeoObjectExtension extends DataExtension
         }
         // add homepage;
         if($addhome){
-            $pages[] = $this->owner->getHomepageCurrLang();
+            $pages[] = SiteTree::get_by_link(RootURLController::get_default_homepage_link());
         }
 
         $template = new SSViewer('SeoBreadcrumbsTemplate');
