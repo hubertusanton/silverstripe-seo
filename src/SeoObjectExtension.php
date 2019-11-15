@@ -4,7 +4,6 @@ namespace Hubertusanton\SilverStripeSeo;
 
 use ArrayData;
 use ArrayList;
-use RootURLController;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
@@ -15,8 +14,9 @@ use SilverStripe\View\Requirements;
 use SilverStripe\Core\Convert;
 use SilverStripe\Control\Director;
 use DOMDocument;
-use SiteTree;
-use SSViewer;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\CMS\Controllers\RootURLController;
+use SilverStripe\View\SSViewer;
 
 /**
  * SeoObjectExtension extends SiteTree with functionality for helping content authors to
@@ -138,15 +138,15 @@ class SeoObjectExtension extends DataExtension
         $fields->removeFieldFromTab('Root.Main', 'Metadata');
 
         $fields->addFieldsToTab('Root.SEO', array(
-                            TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription'))
-                                ->setRightTitle(
-                                    _t(
-                                        'SiteTree.METADESCHELP',
-                                        "Search engines use this content for displaying search results (although it will not influence their ranking)."
-                                    )
-                                )
-                                ->addExtraClass('help')
-                            )
+                TextareaField::create("MetaDescription", $this->owner->fieldLabel('MetaDescription'))
+                    ->setRightTitle(
+                        _t(
+                            'SiteTree.METADESCHELP',
+                            "Search engines use this content for displaying search results (although it will not influence their ranking)."
+                        )
+                    )
+                    ->addExtraClass('help')
+            )
         );
         $fields->addFieldsToTab('Root.SEO', array(
                 GoogleSuggestField::create("SEOPageSubject", _t('SEO.SEOPageSubjectTitle', 'Subject of this page (required to view this page SEO score)')),
@@ -163,15 +163,15 @@ class SeoObjectExtension extends DataExtension
 
         if ($this->checkPageSubjectDefined()) {
             $fields->addFieldsToTab('Root.SEO', array(
-                LiteralField::create('SimplePageSubjectCheckValues', $this->getHTMLSimplePageSubjectTest())
+                    LiteralField::create('SimplePageSubjectCheckValues', $this->getHTMLSimplePageSubjectTest())
                 )
             );
         }
 
         if ($this->seo_score < 12) {
             $fields->addFieldsToTab('Root.SEO', array(
-                LiteralField::create('ScoreTipsTitle', '<h4 class="seo_score">' . _t('SEO.SEOScoreTips', 'SEO Score Tips') . '</h4>'),
-                LiteralField::create('ScoreTips', $this->seo_score_tips)
+                    LiteralField::create('ScoreTipsTitle', '<h4 class="seo_score">' . _t('SEO.SEOScoreTips', 'SEO Score Tips') . '</h4>'),
+                    LiteralField::create('ScoreTips', $this->seo_score_tips)
                 )
             );
         }
@@ -264,7 +264,7 @@ class SeoObjectExtension extends DataExtension
         }
         // add homepage;
         if($addhome){
-            $pages[] = SiteTree::get_by_link(RootURLController::get_default_homepage_link());
+            $pages[] = SiteTree::get_by_link(RootURLController::get_homepage_link());
         }
 
         $template = new SSViewer('SeoBreadcrumbsTemplate');
