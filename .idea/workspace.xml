@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb750808-707d-4c2d-8310-9e7f24ee46f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/SeoObjectExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeoObjectExtension.php" afterDir="false" />
-    </list>
+    <list default="true" id="cb750808-707d-4c2d-8310-9e7f24ee46f0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,12 +122,12 @@
       <option name="presentableId" value="Default" />
       <updated>1573476077864</updated>
       <workItem from="1573476079077" duration="1055000" />
-      <workItem from="1573806333463" duration="1857000" />
+      <workItem from="1573806333463" duration="2121000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2912000" />
+    <option name="totallyTimeSpent" value="3176000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1440" y="180" width="1440" height="900" extended-state="6" />

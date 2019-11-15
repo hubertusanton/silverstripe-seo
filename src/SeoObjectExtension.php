@@ -2,8 +2,8 @@
 
 namespace Hubertusanton\SilverStripeSeo;
 
-use ArrayData;
-use ArrayList;
+use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
