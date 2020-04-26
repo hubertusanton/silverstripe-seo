@@ -1,8 +1,5 @@
-
 (function($) {
-
 		$.entwine('ss', function($){
-
 			$('.cms-edit-form textarea[name=MetaDescription]').entwine({
 				// Constructor: onmatch
 				onkeyup : function() {
@@ -18,11 +15,9 @@
 
 			var page_url_basehref = $('input[name="URLSegment"]').attr('data-prefix'),
 				page_url_segment = $('input[name="URLSegment"]').val(),
-				page_title       = $('#Form_EditForm_Title').val(),
-				page_menutitle  = $('#Form_EditForm_MenuTitle').val(),
-				page_content     = $('textarea#Form_EditForm_Content').val(),
-				page_metadata_title = $('#Form_EditForm_MetaTitle').val(),
-				page_metadata_description = $('#Form_EditForm_MetaDescription').val(),
+				page_title       = $('input[name="Title"').val(),
+				page_metadata_title = $('input[name="MetaTitle"]').val(),
+				page_metadata_description = $('textarea[name="MetaDescription"]').val(),
 				siteconfig_title = $('#ss_siteconfig_title').html();
 
 				// build google search preview
@@ -43,9 +38,3 @@
 		}
 	
 })(jQuery);
-
-
-
-
-
-
