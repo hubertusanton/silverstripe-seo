@@ -15,11 +15,11 @@ class GoogleSuggestField extends FormField {
 
                 $.entwine('ss', function($){
 
-                    $('.cms-edit-form input#Form_EditForm_{$this->getName()}').entwine({
+                    $('.cms-edit-form input[name="{$this->getName()}"]').entwine({
                         // Constructor: onmatch
                         onmatch : function() {
 
-                            $( "#Form_EditForm_{$this->getName()}" ).autocomplete({
+                            $('input[name="{$this->getName()}"]').autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
                                       url: "//suggestqueries.google.com/complete/search",
