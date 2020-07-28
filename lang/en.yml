@@ -30,3 +30,8 @@ en:
     SEOGoogleWebmasterMetaTag: 'Google webmaster meta tag'
     SEOGoogleWebmasterMetaTagRightTitle: 'Full Google webmaster meta tag For example &lt;meta name="google-site-verification" content="hjhjhJHG12736JHGdfsdf" &gt;'
     SEOScoreTipImagesHaveTitleTags: 'All images on this page do not have title tags'
+    SEOSocialData: 'Social Data'
+    SEOHideSocialDataDescription: 'Hide Social Data From Pages HTML?'
+    SEOSocialType: 'Social Content Type'
+    SEOSocialImage: 'Image to share on Social Media'
+    SEODefaultImage: 'Defaults to featured image, if available'
