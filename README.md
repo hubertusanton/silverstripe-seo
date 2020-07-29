@@ -21,9 +21,14 @@ This is done for giving a realtime preview on the google search result of the pa
 
 In seo.yml config file you can specify which classes will NOT use the module. 
 By default every class extending Page will use the SEO module.
-Caution: The new master branch is not compatible with old releases see [this pull request](https://github.com/hubertusanton/silverstripe-seo/pull/10) from [jonom](https://github.com/jonom) (thanks!).
-Please use tag 1.1 in old sites with the old config and tag 2.0 for new projects, but updating to 2.0 will also fix google suggest and
-has some other fixes.
+
+Contributers for this module are (if i missed someone let me know)
+
+* [mlewis-everley](https://github.com/mlewis-everley)
+* [jonom](https://github.com/jonom)
+* [wilr](https://github.com/wilr)
+* [TheBnl](https://github.com/TheBnl)  
+* [diede-dertig](https://github.com/diede-dertig)
 
 ## Screenshots
 
@@ -35,7 +40,6 @@ Place the module dir in your website root and run /dev/build?flush=all
 
 ## TODO's for next versions
 
-* Option to set social networking title and images for sharing of page on facebook and google plus
 * Create a google webmaster code config 
 * Only check for outgoing links in content ommit links within site
 * Translations to other languages
