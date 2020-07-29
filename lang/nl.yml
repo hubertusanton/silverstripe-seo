@@ -30,3 +30,8 @@ nl:
     SEOGoogleWebmasterMetaTag: 'Google webmaster meta tag'
     SEOGoogleWebmasterMetaTagRightTitle: 'Full Google webmaster meta tag. Bijvoorbeeld &lt;meta name="google-site-verification" content="hjhjhJHG12736JHGdfsdf" &gt;'
     SEOScoreTipImagesHaveTitleTags: 'Alle afbeeldingen op deze pagina hebben geen title tags'
+    SEOSocialData: 'Sociale gegevens'
+    SEOHideSocialDataDescription: 'Sociale gegevens verbergen in HTML?'
+    SEOSocialType: 'Type sociale inhoud'
+    SEOSocialImage: 'Afbeelding om te delen op sociale media'
+    SEODefaultImage: 'Wordt standaard weergegeven op de afbeelding, indien beschikbaar'

@@ -26,3 +26,8 @@ es:
     SEOSubjectCheckPageContent: 'Contenido de la página:'
     SEOSubjectCheckPageURL: 'URL de la página:'
     SEOSubjectCheckPageMetaDescription: 'Descripción META de la página:'
+    SEOSocialData: 'Datos sociales'
+    SEOHideSocialDataDescription: '¿Ocultar datos sociales de páginas HTML?'
+    SEOSocialType: 'Tipo de contenido social'
+    SEOSocialImage: 'Imagen para compartir en las redes sociales'
+    SEODefaultImage: 'El valor predeterminado es la imagen destacada, si está disponible.'
