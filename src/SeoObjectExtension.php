@@ -167,8 +167,15 @@ class SeoObjectExtension extends DataExtension
         );
 
         // move Metadata field from Root.Main to SEO tab for visualising direct impact on search result
-
-        $fields->removeFieldFromTab('Root.Main', 'Metadata');
+        $fields->removeFieldsFromTab(
+            'Root.Main',
+            [
+                'Metadata',
+                'SEOSocialType',
+                'SEOHideSocialData',
+                'SEOSocialImage'
+            ]
+        );
 
         $fields->addFieldsToTab(
             'Root.SEO',
