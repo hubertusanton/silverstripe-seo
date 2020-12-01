@@ -307,7 +307,7 @@ class SeoObjectExtension extends DataExtension
      * Attempt to find a suitable social image to use if one is not set.
      * By default try to see if this is a blog post and add the "Featured Image"
      *
-     * @return Image 
+     * @return Image
      */
     public function getSEOPreferedSocialImage()
     {
@@ -808,7 +808,11 @@ class SeoObjectExtension extends DataExtension
      */
     public function getPageContent()
     {
-        $response = Director::test($this->owner->Link());
+        $session = [];
+        if (Controller::has_curr()) {
+            $session = Controller::curr()->getRequest()->getSession();
+        }
+        $response = Director::test($this->owner->Link(), [], $session);
 
         if (!$response->isError()) {
             return $response->getBody();
