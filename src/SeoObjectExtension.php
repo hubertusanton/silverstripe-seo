@@ -24,6 +24,9 @@ use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\ToggleCompositeField;
 use SilverStripe\i18n\i18n;
+use SilverStripe\ErrorPage\ErrorPage;
+use SilverStripe\CMS\Model\VirtualPage;
+use SilverStripe\CMS\Model\RedirectorPage;
 
 /**
  * SeoObjectExtension extends SiteTree with functionality for helping content authors to
@@ -41,9 +44,9 @@ class SeoObjectExtension extends DataExtension
      * @var array
      */
     private static $excluded_page_types = [
-        'ErrorPage',
-        'RedirectorPage',
-        'VirtualPage'
+        ErrorPage::class,
+        RedirectorPage::class,
+        VirtualPage::class
     ];
 
     /**
