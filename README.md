@@ -22,14 +22,6 @@ This is done for giving a realtime preview on the google search result of the pa
 In seo.yml config file you can specify which classes will NOT use the module. 
 By default every class extending Page will use the SEO module.
 
-Contributers for this module are (if i missed someone let me know)
-
-* [mlewis-everley](https://github.com/mlewis-everley)
-* [jonom](https://github.com/jonom)
-* [wilr](https://github.com/wilr)
-* [TheBnl](https://github.com/TheBnl)  
-* [diede-dertig](https://github.com/diede-dertig)
-
 ## Screenshots
 
 ![ScreenShot](https://raw.githubusercontent.com/hubertusanton/silverstripe-seo/master/1.png)
