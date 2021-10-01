@@ -681,12 +681,16 @@ class SeoObjectExtension extends SiteTreeExtension {
 	*
 	*/
 	public function getPageContent() {
+		static $cache = null;
 
-		Config::inst()->update('SSViewer', 'theme_enabled', true);
-		$rendered_layout = $this->RenderLayout();
-		Config::inst()->update('SSViewer', 'theme_enabled', false);
-		return $rendered_layout;
+		if ($cache === null) {
+			Config::inst()->update('SSViewer', 'theme_enabled', true);
+			$rendered_layout = $this->RenderLayout();
+			Config::inst()->update('SSViewer', 'theme_enabled', false);
+			$cache = $rendered_layout;
+		}
 
+		return $cache;
 	}
 
 }
