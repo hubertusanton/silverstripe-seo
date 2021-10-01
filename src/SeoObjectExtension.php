@@ -811,16 +811,22 @@ class SeoObjectExtension extends DataExtension
      */
     public function getPageContent()
     {
-        $session = [];
-        if (Controller::has_curr()) {
-            $session = Controller::curr()->getRequest()->getSession();
-        }
-        $response = Director::test($this->owner->Link(), [], $session);
+        static $cache = null;
+        
+        if ($cache === null) {
+            $session = [];
+            if (Controller::has_curr()) {
+                $session = Controller::curr()->getRequest()->getSession();
+            }
+            $response = Director::test($this->owner->Link(), [], $session);
 
-        if (!$response->isError()) {
-            return $response->getBody();
+            if (!$response->isError()) {
+                $cache = $response->getBody();
+            } else {
+                $cache = '';
+            }
         }
-
-        return '';
+        
+        return $cache;
     }
 }
