@@ -15,7 +15,7 @@
         "issues": "http://github.com/hubertusanton/silverstripe-seo/issues"
     },
     "require": {
-        "silverstripe/framework": "^4"
+        "silverstripe/framework": "^4 | ^5"
     },
     "autoload": {
         "psr-4": {
