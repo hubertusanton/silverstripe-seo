@@ -8,7 +8,7 @@
 
 ## Requirements
 
-* SilverStripe 4.*
+* SilverStripe 5.*
 
 ## Documentation
 
