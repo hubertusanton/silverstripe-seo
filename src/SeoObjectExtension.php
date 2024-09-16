@@ -585,9 +585,9 @@ class SeoObjectExtension extends DataExtension
      */
     public function checkPageSubjectInTitle() {
         if ($this->checkPageSubjectDefined()) {
-            if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->MetaTitle)) {
+            if (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->MetaTitle ?? '')) {
                 return true;
-            } elseif (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Title)) {
+            } elseif (preg_match('/' . preg_quote($this->owner->SEOPageSubject, '/') . '/i', $this->owner->Title ?? '')) {
                 return true;
             } else {
                 return false;
@@ -812,7 +812,7 @@ class SeoObjectExtension extends DataExtension
     public function getPageContent()
     {
         static $cache = null;
-        
+
         if ($cache === null) {
             $session = [];
             if (Controller::has_curr()) {
@@ -826,7 +826,7 @@ class SeoObjectExtension extends DataExtension
                 $cache = '';
             }
         }
-        
+
         return $cache;
     }
 }
