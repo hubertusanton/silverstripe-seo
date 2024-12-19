@@ -703,7 +703,7 @@ class SeoObjectExtension extends DataExtension
      * @return boolean
      */
     private function checkPageTitleLength() {
-        $site_title_length = strlen($this->owner->getSiteConfig()->Title);
+        $site_title_length = strlen($this->owner->getSiteConfig()->Title ?? '');
         // 3 is length of divider, this could all be done better ...
         return (($this->getNumCharsTitle() + 3 + $site_title_length) >= 40) ? true : false;
     }
@@ -800,7 +800,7 @@ class SeoObjectExtension extends DataExtension
      * @return Integer Number of chars of the title
      */
     public function getNumCharsTitle() {
-        return strlen($this->owner->Title);
+        return strlen($this->owner->Title ?? '');
     }
 
     /**
