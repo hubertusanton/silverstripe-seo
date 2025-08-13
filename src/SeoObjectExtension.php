@@ -5,13 +5,15 @@ namespace Hubertusanton\SilverStripeSeo;
 use DOMDocument;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Injector\Injector;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\SSViewer;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Control\Director;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\View\Requirements;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
@@ -33,7 +35,7 @@ use SilverStripe\CMS\Model\RedirectorPage;
  * write good content for search engines, it uses the added var SEOPageSubject around
  * which the SEO score for the page is determined
  */
-class SeoObjectExtension extends DataExtension
+class SeoObjectExtension extends Extension
 {
     use Configurable;
 
@@ -815,9 +817,15 @@ class SeoObjectExtension extends DataExtension
 
         if ($cache === null) {
             $session = [];
+
+            if ($request = Injector::inst()->get(HTTPRequest::class)) {
             if (Controller::has_curr()) {
-                $session = Controller::curr()->getRequest()->getSession();
+                $request = Controller::curr()->getRequest();
+                if ($request) {
+                    $session = $request->getSession();
+                }
             }
+
             $response = Director::test($this->owner->Link(), [], $session);
 
             if (!$response->isError()) {

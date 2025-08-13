@@ -5,12 +5,12 @@ namespace Hubertusanton\SilverStripeSeo;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Config\Config;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
 /**
  * SeoSiteConfig adds site-wide settings for SEO
  */
-class SeoSiteConfig extends DataExtension
+class SeoSiteConfig extends Extension
 {
     private static $db = [
         'GoogleWebmasterMetaTag' => 'Varchar(512)'
