@@ -819,22 +819,23 @@ class SeoObjectExtension extends Extension
             $session = [];
 
             if ($request = Injector::inst()->get(HTTPRequest::class)) {
-            if (Controller::has_curr()) {
-                $request = Controller::curr()->getRequest();
-                if ($request) {
-                    $session = $request->getSession();
+                if (Controller::has_curr()) {
+                    $request = Controller::curr()->getRequest();
+                    if ($request) {
+                        $session = $request->getSession();
+                    }
+                }
+
+                $response = Director::test($this->owner->Link(), [], $session);
+
+                if (!$response->isError()) {
+                    $cache = $response->getBody();
+                } else {
+                    $cache = '';
                 }
             }
 
-            $response = Director::test($this->owner->Link(), [], $session);
-
-            if (!$response->isError()) {
-                $cache = $response->getBody();
-            } else {
-                $cache = '';
-            }
+            return $cache;
         }
-
-        return $cache;
     }
 }
