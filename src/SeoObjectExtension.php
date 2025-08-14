@@ -813,13 +813,13 @@ class SeoObjectExtension extends Extension
      */
     public function getPageContent()
     {
-        static $cache = null;
+        static $cache = '';
 
-        if ($cache === null) {
+        if ($cache === '') {
             $session = [];
 
             if ($request = Injector::inst()->get(HTTPRequest::class)) {
-                if (Controller::has_curr()) {
+                if (Controller::curr()) {
                     $request = Controller::curr()->getRequest();
                     if ($request) {
                         $session = $request->getSession();
@@ -830,12 +830,11 @@ class SeoObjectExtension extends Extension
 
                 if (!$response->isError()) {
                     $cache = $response->getBody();
-                } else {
-                    $cache = '';
                 }
             }
-
-            return $cache;
         }
+
+        return $cache;
+
     }
 }
