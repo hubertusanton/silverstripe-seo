@@ -317,14 +317,18 @@ class SeoObjectExtension extends Extension
     public function getSEOPreferedSocialImage()
     {
         $owner = $this->getOwner();
-        $social_image = $owner->SEOSocialImage();
 
-        if (!$social_image->exists() && $owner->hasMethod('FeaturedImage') && $owner->FeaturedImage()->exists()) {
+        // Check if SEOSocialImage is set via ID first
+        if ($owner->SEOSocialImageID && $owner->SEOSocialImage()) {
+            return $owner->SEOSocialImage();
+        }
+
+        // Fallback to FeaturedImage if available
+        if ($owner->hasMethod('FeaturedImage') && $owner->FeaturedImageID && $owner->FeaturedImage()) {
             return $owner->FeaturedImage();
         }
 
-        // Return the default expected result
-        return $social_image;
+        return null;
     }
 
     /**
